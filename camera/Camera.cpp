@@ -23,3 +23,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
 */
+#include <cv.h>
+
+using namespace cv;
+
+class Camera {
+public:
+	Camera() {
+	}
+	~Camera() {
+	}
+	int init_camera() {
+
+	}
+	int get_camera_handle() {
+		return 0;
+	}
+	Mat get_camera_frame() {
+		return frame;
+	}
+protected:
+private:
+	double fx;
+	double fy;
+
+	double gps_x;
+	double gps_y;
+	double gps_z;
+
+	double resolution_x;
+	double resolution_y;
+
+	double framerate;
+
+	int camera_handle;
+	Mat frame;
+};

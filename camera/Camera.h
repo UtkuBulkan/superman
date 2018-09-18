@@ -24,25 +24,22 @@
  * SOFTWARE.
 */
 
-#include <memory>
-#include <list>
-#include <iostream>
-#include "Camera.h"
-#include "CameraManager.h"
+class Camera {
+public:
+	Camera();
+	~Camera();
+	Camera(Camera *camera);
+protected:
+private:
+	double fx;
+	double fy;
 
+	double gps_x;
+	double gps_y;
+	double gps_z;
 
-CameraManager::CameraManager()
-{
-	std::cout << "Instanciated.\n";
-}
+	double resolution_x;
+	double resolution_y;
 
-CameraManager::~CameraManager()
-{
-
-}
-
-void CameraManager::AddCamera()
-{
-	std::unique_ptr<Camera> camera_item;
-	camera_collection.emplace_back(new Camera());
-}
+	double framerate;
+};

@@ -23,26 +23,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
 */
-
-#include <memory>
-#include <list>
 #include <iostream>
 #include "Camera.h"
 #include "CameraManager.h"
 
-
-CameraManager::CameraManager()
+int main()
 {
-	std::cout << "Instanciated.\n";
-}
+	std::cout << "Hello world.\n";
+	CameraManager a;
 
-CameraManager::~CameraManager()
-{
-
-}
-
-void CameraManager::AddCamera()
-{
-	std::unique_ptr<Camera> camera_item;
-	camera_collection.emplace_back(new Camera());
+	return 0;
 }
