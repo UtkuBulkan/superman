@@ -24,7 +24,6 @@
  * SOFTWARE.
 */
 #include <iostream>
-#include "Camera.h"
 #include "CameraManager.h"
 
 int main()

@@ -27,9 +27,8 @@
 #include <memory>
 #include <list>
 #include <iostream>
-#include "Camera.h"
-#include "CameraManager.h"
 
+#include "CameraManager.h"
 
 CameraManager::CameraManager()
 {

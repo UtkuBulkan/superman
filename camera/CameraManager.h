@@ -26,6 +26,7 @@
 
 #include <list>
 #include <memory>
+#include "Camera.h"
 
 class CameraManager {
 public:

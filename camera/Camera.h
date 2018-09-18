@@ -23,12 +23,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
 */
+#include <cv.h>
 
 class Camera {
 public:
 	Camera();
 	~Camera();
 	Camera(Camera *camera);
+	int init_camera();
+	int get_camera_handle();
+	cv::Mat get_camera_frame();
 protected:
 private:
 	double fx;
@@ -42,4 +46,5 @@ private:
 	double resolution_y;
 
 	double framerate;
+	cv::Mat frame;
 };
