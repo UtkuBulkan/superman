@@ -31,5 +31,8 @@ int main()
 	std::cout << "Hello world.\n";
 	CameraManager a;
 
+	a.add_camera();
+	a.loop();
+
 	return 0;
 }

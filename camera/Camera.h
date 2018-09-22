@@ -24,15 +24,17 @@
  * SOFTWARE.
 */
 #include <cv.h>
+#include <opencv2/opencv.hpp>
+#include <string>
 
 class Camera {
 public:
-	Camera();
+	Camera(const std::string &filename);
 	~Camera();
 	Camera(Camera *camera);
 	int init_camera();
 	int get_camera_handle();
-	cv::Mat get_camera_frame();
+	cv::Mat& get_camera_frame();
 protected:
 private:
 	double fx;
@@ -46,5 +48,8 @@ private:
 	double resolution_y;
 
 	double framerate;
+
+	std::string filename;
+	cv::VideoCapture capture;
 	cv::Mat frame;
 };

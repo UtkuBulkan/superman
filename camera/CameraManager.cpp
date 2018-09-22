@@ -28,11 +28,15 @@
 #include <list>
 #include <iostream>
 
+#include <opencv2/core.hpp>
+#include <opencv2/highgui.hpp>
+
 #include "CameraManager.h"
 
 CameraManager::CameraManager()
 {
 	std::cout << "Instanciated.\n";
+	cv::namedWindow("w", 1);
 }
 
 CameraManager::~CameraManager()
@@ -40,8 +44,24 @@ CameraManager::~CameraManager()
 
 }
 
-void CameraManager::AddCamera()
+void CameraManager::add_camera()
 {
-	std::unique_ptr<Camera> camera_item;
-	camera_collection.emplace_back(new Camera());
+	Camera *camera_item = new Camera("/home/utku/superman/testcontent/single/carvideo.mp4");
+	std::cout << "CAMERAITEM : " << &(*camera_item) << std::endl;
+	camera_collection.push_front(camera_item);
 }
+
+void CameraManager::loop()
+{
+	cv::Mat frame;
+	while(1) {
+		std::cout << "Backcover\n";
+		for(std::list<Camera*>::iterator it=camera_collection.begin(); it != camera_collection.end(); it++) {
+			std::cout << "CAMERAITEM : " << &(*it) << std::endl;
+			frame = (*it)->get_camera_frame();
+			cv::imshow("w", frame);
+			if(cv::waitKey(30) >= 0) break;
+		}
+	}
+}
+

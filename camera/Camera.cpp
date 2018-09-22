@@ -25,10 +25,12 @@
 */
 #include <cv.h>
 #include <Camera.h>
+#include <iostream>
 
 using namespace cv;
 
-Camera::Camera() {
+Camera::Camera(const std::string &filename) : filename(filename) {
+	init_camera();
 }
 Camera::~Camera() {
 }
@@ -36,13 +38,29 @@ Camera::Camera(Camera *camera) {
 }
 int Camera::init_camera()
 {
-
+	std::cout << "Opening file : " << filename << "\n";
+	capture.open(filename);
+	if ( !capture.isOpened	() ) {
+		throw "Error opening file.\n";
+	}
+	std::cout << "Chairman\n";
+	return 0;
 }
 int Camera::get_camera_handle()
 {
 	return 0;
 }
-cv::Mat Camera::get_camera_frame()
+cv::Mat& Camera::get_camera_frame()
 {
+	try {
+		//capture.read(frame);
+		capture >> frame;
+	} catch(cv::Exception ex) {
+		std::cout << ex.what() << std::endl;
+	} catch(...) {
+		std::cout << "Unknown exception" << std::endl;
+	}
+
+	std::cout << "Yo : " << frame.size() << "\n";
 	return frame;
 }

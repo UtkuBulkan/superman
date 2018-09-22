@@ -32,8 +32,9 @@ class CameraManager {
 public:
 	CameraManager();
 	~CameraManager();
-	void AddCamera(void);
+	void add_camera(void);
+	void loop();
 protected:
 private:
-	std::list<Camera> camera_collection;
+	std::list<Camera*> camera_collection;
 };
