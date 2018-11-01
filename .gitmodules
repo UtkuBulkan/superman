@@ -1,0 +1,3 @@
+[submodule "threadpool"]
+	path = thirdparty/threadpool
+	url = https://github.com/UtkuBulkan/threadpool
