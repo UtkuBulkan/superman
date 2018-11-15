@@ -1,3 +1,6 @@
 [submodule "threadpool"]
-	path = thirdparty/threadpool
+	path = lib/threadpool
 	url = https://github.com/UtkuBulkan/threadpool
+[submodule "lib/syslog_for_cpp"]
+	path = lib/syslog_for_cpp
+	url = https://github.com/UtkuBulkan/syslog_for_cpp.git
