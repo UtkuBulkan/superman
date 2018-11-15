@@ -23,9 +23,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
 */
-#include <cv.h>
+
 #include <Camera.h>
 #include <iostream>
+#include "syslog_cpp.h"
 
 using namespace cv;
 
@@ -35,15 +36,15 @@ Camera::Camera(const std::string &filename) : filename(filename) {
 Camera::~Camera() {
 }
 Camera::Camera(Camera *camera) {
+	(void)camera;
 }
 int Camera::init_camera()
 {
-	std::cout << "Opening file : " << filename << "\n";
+	logger << syslog::level::debug << "Opening file : " << filename.c_str() << std::endl	;
 	capture.open(filename);
 	if ( !capture.isOpened	() ) {
 		throw "Error opening file.\n";
 	}
-	std::cout << "Chairman\n";
 	return 0;
 }
 int Camera::get_camera_handle()
@@ -53,14 +54,12 @@ int Camera::get_camera_handle()
 cv::Mat& Camera::get_camera_frame()
 {
 	try {
-		//capture.read(frame);
 		capture >> frame;
 	} catch(cv::Exception ex) {
 		std::cout << ex.what() << std::endl;
 	} catch(...) {
 		std::cout << "Unknown exception" << std::endl;
 	}
-
-	std::cout << "Yo : " << frame.size() << "\n";
+	logger << syslog::level::debug << "Frame resolution : " << frame.rows << "x" << frame.cols << std::endl;
 	return frame;
 }

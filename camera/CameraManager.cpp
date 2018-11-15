@@ -32,10 +32,10 @@
 #include <opencv2/highgui.hpp>
 
 #include "CameraManager.h"
+#include "syslog_cpp.h"
 
 CameraManager::CameraManager()
 {
-	std::cout << "Instanciated.\n";
 	cv::namedWindow("w", 1);
 }
 
@@ -46,18 +46,16 @@ CameraManager::~CameraManager()
 
 void CameraManager::add_camera()
 {
-	Camera *camera_item = new Camera("/home/utku/superman/testcontent/single/carvideo.mp4");
-	std::cout << "CAMERAITEM : " << &(*camera_item) << std::endl;
-	camera_collection.push_front(camera_item);
+	Camera *camera_view = new Camera("/home/utku/superman/testcontent/single/carvideo.mp4");
+	camera_collection.push_front(camera_view);
 }
 
 void CameraManager::loop()
 {
 	cv::Mat frame;
 	while(1) {
-		std::cout << "Backcover\n";
+		logger << syslog::level::info << "Backcover" << std::endl;
 		for(std::list<Camera*>::iterator it=camera_collection.begin(); it != camera_collection.end(); it++) {
-			std::cout << "CAMERAITEM : " << &(*it) << std::endl;
 			frame = (*it)->get_camera_frame();
 			cv::imshow("w", frame);
 			if(cv::waitKey(30) >= 0) break;

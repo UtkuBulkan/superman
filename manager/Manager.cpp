@@ -26,13 +26,22 @@
 #include <iostream>
 #include "CameraManager.h"
 
+#include "syslog_cpp.h"
+syslog::syslog_ostream logger;
+
 int main()
 {
-	std::cout << "Hello world.\n";
 	CameraManager a;
 
+	logger.setlogmask(syslog::level::debug);
+	logger.openlog("superman");
+
+	logger << syslog::level::debug << "Manager main is instantiated." << std::endl;
 	a.add_camera();
+	logger << syslog::level::debug << "Getting into camera loop\n" << std::endl;
 	a.loop();
+
+	logger.closelog();
 
 	return 0;
 }
