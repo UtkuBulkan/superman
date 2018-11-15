@@ -18,7 +18,7 @@ message(STATUS "    include path: ${OpenCV_INCLUDE_DIRS}")
 #For the shared library:
 set ( PROJECT_LINK_LIBS ${OpenCV_LIBS})
 include_directories(/usr/local/include/opencv ${CMAKE_CURRENT_SOURCE_DIR}/camera 
-                    ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/cpp-syslog)
+                    ${CMAKE_CURRENT_SOURCE_DIR}/lib/syslog_for_cpp)
 
 link_directories( /usr/local/lib )
 
