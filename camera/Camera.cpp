@@ -27,6 +27,7 @@
 #include <Camera.h>
 #include <iostream>
 #include "syslog_cpp.h"
+#include "tensorflow/c/c_api.h"
 
 using namespace cv;
 
@@ -40,7 +41,8 @@ Camera::Camera(Camera *camera) {
 }
 int Camera::init_camera()
 {
-	logger << syslog::level::debug << "Opening file : " << filename.c_str() << std::endl	;
+	logger <<  "Hello from TensorFlow C library version : " << TF_Version() << std::endl;
+	logger << syslog::level::debug << "Opening file : " << filename.c_str() << std::endl;
 	capture.open(filename);
 	if ( !capture.isOpened	() ) {
 		throw "Error opening file.\n";

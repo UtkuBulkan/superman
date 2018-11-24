@@ -27,6 +27,7 @@
 #include <list>
 #include <memory>
 #include "Camera.h"
+#include "ObjectDetection.h"
 
 class CameraManager {
 public:
@@ -37,4 +38,5 @@ public:
 protected:
 private:
 	std::list<Camera*> camera_collection;
+	ObjectDetector object_detector;
 };

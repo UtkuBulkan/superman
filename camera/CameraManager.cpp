@@ -36,7 +36,9 @@
 
 CameraManager::CameraManager()
 {
-	cv::namedWindow("w", 1);
+	logger << syslog::level::info << "CameraManager Constructor" << std::endl;
+	cv::namedWindow("Camera1", cv::WINDOW_NORMAL);
+	cv::resizeWindow("Camera1", 640, 480);
 }
 
 CameraManager::~CameraManager()
@@ -54,10 +56,11 @@ void CameraManager::loop()
 {
 	cv::Mat frame;
 	while(1) {
-		logger << syslog::level::info << "Backcover" << std::endl;
+		logger << syslog::level::info << "Timestamp" << std::endl;
 		for(std::list<Camera*>::iterator it=camera_collection.begin(); it != camera_collection.end(); it++) {
 			frame = (*it)->get_camera_frame();
-			cv::imshow("w", frame);
+			object_detector.process_frame(frame);
+			cv::imshow("Camera1", frame);
 			if(cv::waitKey(30) >= 0) break;
 		}
 	}
